@@ -1,0 +1,34 @@
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const booksRoute = require("./Routes/BooksRoute");
+const dotenv = require("dotenv");
+const cors = require("cors");
+dotenv.config();
+
+app.use(express.json());
+app.use(cors());
+
+// app.get("/demo", (request, response) => {
+//   console.log("In demo");
+//   response.send("Sample get");
+// });
+
+// Routes
+app.use("/books", booksRoute);
+
+// Mongoose Connectivity
+mongoose.connect(
+  process.env.CONNECTION_STRING,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    if (err) return console.log(err.message);
+    console.log("Database Connected!");
+    app.listen(5000, () => {
+      console.log("Server listening to the port 5000");
+    });
+  }
+);
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error"));

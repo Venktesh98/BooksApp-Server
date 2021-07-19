@@ -4,17 +4,12 @@ const bookModel = mongoose.Schema({
   bookTitle: {
     type: String,
     required: true,
+    unique:true
   },
   bookPrice: {
     type: Number,
     required: true,
   },
-  //   roomImages: [
-  //     {
-  //       type: String,
-  //       required: true,
-  //     },
-  //   ],
   bookAuthor: {
     type: String,
     required: true,

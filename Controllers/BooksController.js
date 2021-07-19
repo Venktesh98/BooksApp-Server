@@ -20,7 +20,7 @@ exports.addBook = async (request, response) => {
     })
     .catch((error) => {
       console.log("Error:", error);
-      response.status(400).json({ message: "Something went wrong!" });
+      response.status(400).json({ message: "Book already exists" });
     });
 };
 
